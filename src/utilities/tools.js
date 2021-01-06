@@ -1,7 +1,7 @@
 const { readJSON, writeJSON } = require("fs-extra");
 const { join } = require("path");
 
-const readDB = async (filepath) => {
+const readDB = async filepath => {
   try {
     const fileJSON = await readJSON(filepath);
     return fileJSON;
@@ -19,7 +19,7 @@ const writeDB = async (filepath, fileContent) => {
 };
 
 module.exports = {
-  getPlaces: async (filepath) => readDB(filepath),
+  getPlaces: async filepath => readDB(filepath),
   writePlaces: async (filepath, fileContent) => writeDB(filepath, fileContent),
 };
 

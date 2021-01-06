@@ -1,1 +1,17 @@
-[{"title":"Deep sensation of freedom","address":"this is a random address 90","description":"Beautiful appartament located in the middle of pure nature","price":1500,"roomsInfo":" 2 bedrooms, 1 bethroom with jacuzi and 1 open space kitchen","houseFacilities":"Balconi with an interesting space for animals or lounge space"},{"iAmUpdated":"GoodMorning","id":"7ulv1ej9kjkwgigq"}]
+[
+  {
+    "title": "Deep sensation of freedom",
+    "address": {
+      "street": "",
+      "city": "",
+      "zipcode": "",
+      "country": "",
+      "latitude": "",
+      "longitude": ""
+    },
+    "description": "Beautiful appartament located in the middle of pure nature",
+    "price": 1500,
+    "roomsInfo": " 2 bedrooms, 1 bethroom with jacuzi and 1 open space kitchen",
+    "houseFacilities": "Balconi with an interesting space for animals or lounge space"
+  }
+]
