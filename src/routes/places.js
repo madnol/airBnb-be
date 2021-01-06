@@ -1,12 +1,15 @@
 const express = require("express");
 const uniqid = require("uniqid");
+const { getPlaces, writePlaces } = require("../utilities/tools.js");
 
 const placesRouter = express.Router();
+
+const placePath = join(__dirname, "./");
 
 let places = [];
 
 placesRouter.get("/", (req, res) => {
-  console.log("GET");
+  allPlaces= await getPlaces(placePath)
 
   res.send(places);
 });
@@ -21,8 +24,6 @@ placesRouter.get("/:id", (req, res) => {
 
 placesRouter.post("/", (req, res) => {
   console.log("POST");
-
-  places.push({ ...req.body, id: uniqid() });
 
   res.send(places);
 });
