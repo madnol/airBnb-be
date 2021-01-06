@@ -36,29 +36,31 @@ placesRouter.post("/", async (req, res) => {
 placesRouter.put("/:id", async (req, res) => {
   console.log("PUT");
   try {
-    const allPlaces = await getPlaces();
-    let upDatedPlace = allPlaces.find((place) => place.id === req.params.id);
-    if (upDatedPlace) {
-      upDatedPlace = { ...req.body, id: uniqid() };
-      allPlaces.push(upDatedPlace);
-      writePlaces(placePath, allPlaces);
-      res.status(200).send(upDatedPlace);
-    } else {
-      console.log("No element with such ID in the DB");
-    }
+    const allPlaces = await getPlaces(placePath);
+    const newArrayPlaces = allPlaces.filter(
+      (place) => place.id !== req.params.id
+    );
+    const updatedPlace = { ...req.body, id: req.params.id };
+
+    newArrayPlaces.push(updatedPlace);
+
+    writePlaces(placePath, newArrayPlaces);
+
+    res.send(updatedPlace);
   } catch (error) {
     console.log(error);
   }
 });
 
-placesRouter.delete("/", async (req, res) => {
+placesRouter.delete("/:id", async (req, res) => {
   console.log("DELETE");
+  const allPlaces = await getPlaces(placePath);
+  newArrayPlaces = allPlaces.filter((place) => place.id !== req.params.id);
 
-  places = places.filter((place) => place.id !== req.params.id);
+  writePlaces(placePath, newArrayPlaces);
+  console.log(newArrayPlaces);
 
-  console.log(places);
-
-  res.send(places);
+  res.send(newArrayPlaces);
 });
 
 module.exports = placesRouter;
