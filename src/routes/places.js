@@ -33,13 +33,25 @@ placesRouter.post("/", async (req, res) => {
   }
 });
 
-placesRouter.put("/", (req, res) => {
+placesRouter.put("/:id", async (req, res) => {
   console.log("PUT");
-
-  res.send(places);
+  try {
+    const allPlaces = await getPlaces();
+    let upDatedPlace = allPlaces.find((place) => place.id === req.params.id);
+    if (upDatedPlace) {
+      upDatedPlace = { ...req.body, id: uniqid() };
+      allPlaces.push(upDatedPlace);
+      writePlaces(placePath, allPlaces);
+      res.status(200).send(upDatedPlace);
+    } else {
+      console.log("No element with such ID in the DB");
+    }
+  } catch (error) {
+    console.log(error);
+  }
 });
 
-placesRouter.delete("/", (req, res) => {
+placesRouter.delete("/", async (req, res) => {
   console.log("DELETE");
 
   places = places.filter((place) => place.id !== req.params.id);
