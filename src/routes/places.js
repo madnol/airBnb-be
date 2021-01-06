@@ -1,17 +1,16 @@
 const express = require("express");
 const uniqid = require("uniqid");
+const { join } = require("path");
 const { getPlaces, writePlaces } = require("../utilities/tools.js");
 
 const placesRouter = express.Router();
 
-const placePath = join(__dirname, "./");
+const placePath = join(__dirname, "./places.json");
 
-let places = [];
+placesRouter.get("/", async (req, res) => {
+  allPlaces = await getPlaces(placePath);
 
-placesRouter.get("/", (req, res) => {
-  allPlaces= await getPlaces(placePath)
-
-  res.send(places);
+  res.send(allPlaces);
 });
 
 placesRouter.get("/:id", (req, res) => {
@@ -22,10 +21,16 @@ placesRouter.get("/:id", (req, res) => {
   res.send(places);
 });
 
-placesRouter.post("/", (req, res) => {
-  console.log("POST");
-
-  res.send(places);
+placesRouter.post("/", async (req, res) => {
+  try {
+    const allPlaces = await getPlaces(placePath);
+    const newPlace = { ...req.body, id: uniqid() };
+    await allPlaces.push(newPlace);
+    writePlaces(placePath, allPlaces);
+    res.status(201).send(newPlace);
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 placesRouter.put("/", (req, res) => {

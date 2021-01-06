@@ -19,8 +19,8 @@ const writeDB = async (filepath, fileContent) => {
 };
 
 module.exports = {
-  getPlaces: async () => readDB(filepath),
-  writePlaces: async () => writeDB(filepath, fileContent),
+  getPlaces: async (filepath) => readDB(filepath),
+  writePlaces: async (filepath, fileContent) => writeDB(filepath, fileContent),
 };
 
 /* DIFFERNZA TRA THROW ERROR E UN SEMPLICE CONSOLE LOG */

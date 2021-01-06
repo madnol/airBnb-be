@@ -6,5 +6,8 @@
     "price": 1500,
     "roomsInfo": " 2 bedrooms, 1 bethroom with jacuzi and 1 open space kitchen",
     "houseFacilities": "Balconi with an interesting space for animals or lounge space"
-  }
+  },
+  { "iAmAtest": "GoodNight", "id": "7ulv1eeukjkweq2l" },
+  { "iAmAtest": "GoodNight", "id": "7ulv1efykjkwfkmg" },
+  { "iAmAtest": "GoodNight", "id": "7ulv1ej9kjkwgigq" }
 ]
